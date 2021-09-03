@@ -1,12 +1,12 @@
 import Header from 'Components/Common/Header';
-import Home from 'Containers/Home/Home';
 import { BrowserRouter } from 'react-router-dom';
+import Routes from 'Routes';
 
 function App(): JSX.Element {
     return (
         <BrowserRouter>
             <Header />
-            <Home />
+            <Routes />
         </BrowserRouter>
     );
 }
