@@ -1,12 +1,12 @@
-import Form from "./Components/Form";
-import Welcome from "./Components/Welcome";
+import Header from "Components/Common/Header";
+import Home from "Containers/Home";
 
 function App() {
 	return (
-		<div className="App p-5 mt-3">
-			<Welcome name='Sujon' email="" />
-			<Form />
-		</div>
+		<>
+			<Header />
+			<Home />
+		</>
 	);
 }
 
