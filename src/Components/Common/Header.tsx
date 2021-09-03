@@ -4,6 +4,7 @@ import { BiSearch, BiUser } from 'react-icons/bi';
 import { BsPhone } from 'react-icons/bs';
 import { FaBars, FaRegEnvelope } from 'react-icons/fa';
 import { FiPhoneCall, FiShoppingBag } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
 
@@ -93,32 +94,32 @@ const Header = () => {
                     </ul>
                     <ul className="navbar-nav mr-auto ">
                         <li className="nav-item ml-5  pl-5">
-                            <a className="nav-link " href="#">
+                            <Link to="/" className="nav-link ">
                                 Giftcard{' '}
-                            </a>
+                            </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">
+                            <Link to="/" className="nav-link">
                                 Catagories
-                            </a>
+                            </Link>
                         </li>
                     </ul>
 
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item ">
-                            <a className="nav-link" href="#">
+                            <Link to="/" className="nav-link" >
                                 NewsFeed
-                            </a>
+                            </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">
+                            <Link to="/" className="nav-link" >
                                 MerchantZone
-                            </a>
+                            </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">
+                            <Link to="/" className="nav-link" >
                                 Help
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>
