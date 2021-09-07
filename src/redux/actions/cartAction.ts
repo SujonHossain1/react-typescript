@@ -1,22 +1,21 @@
 import { CartAction } from 'redux/actionTypes';
 import { IProduct } from 'types';
 
-export const addToCart = (payload: IProduct) => {
-    return {
-        type: CartAction.ADD_TO_CART,
-        payload,
-    };
-};
+interface addToCartAction {
+    type: CartAction.ADD_TO_CART;
+    payload: IProduct;
+}
 
-export const removeFromCart = (payload: string) => {
-    return {
-        type: CartAction.REMOVE_FROM_CART,
-        payload,
-    };
-};
+interface removeFromCartAction {
+    type: CartAction.REMOVE_FROM_CART;
+    payload: string;
+}
 
-export const clearCart = () => {
-    return {
-        type: CartAction.CLEAR_CART,
-    };
-};
+interface clearCartAction {
+    type: CartAction.CLEAR_CART;
+}
+
+export type cartActionType =
+    | addToCartAction
+    | removeFromCartAction
+    | clearCartAction;

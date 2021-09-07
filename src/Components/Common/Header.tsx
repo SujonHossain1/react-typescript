@@ -4,9 +4,13 @@ import { BiSearch, BiUser } from 'react-icons/bi';
 import { BsPhone } from 'react-icons/bs';
 import { FaBars, FaRegEnvelope } from 'react-icons/fa';
 import { FiPhoneCall, FiShoppingBag } from 'react-icons/fi';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { AppState } from 'redux/reducers/rootReducer';
+import { IProduct } from 'types';
 
 const Header = () => {
+    const cart: IProduct[] = useSelector((state: AppState) => state.cart);
 
     return (
         <div className="header__component">
@@ -14,11 +18,14 @@ const Header = () => {
                 <Container className="d-flex align-items-center justify-content-between">
                     <ul className="list-unstyled d-flex align-items-center gap-4">
                         <li>
-                            <FiPhoneCall /> <a href="tel:09638111666">09638111666</a>
+                            <FiPhoneCall />{' '}
+                            <a href="tel:09638111666">09638111666</a>
                         </li>
                         <li>
                             <FaRegEnvelope />
-                            <a href="mail-to:support@fvaly.com">support@fvaly.com</a>
+                            <a href="mail-to:support@fvaly.com">
+                                support@fvaly.com
+                            </a>
                         </li>
                     </ul>
                     <div>
@@ -33,9 +40,9 @@ const Header = () => {
             <div className="middle-header">
                 <Container>
                     <div className="d-flex align-items-center gap-5 py-3">
-                        <a href="/">
+                        <Link to="/">
                             <img className="branding" src={logo} alt="Fvaly" />
-                        </a>
+                        </Link>
                         <InputGroup>
                             <FormControl
                                 className="border border-primary"
@@ -49,15 +56,17 @@ const Header = () => {
                         </InputGroup>
                         <ul className="icon-list list-unstyled d-flex gap-3">
                             <li>
-                                <a href="/checkout">
+                                <Link to="/checkout">
                                     <FiShoppingBag />
-                                    <span className="badge bg-primary">0</span>
-                                </a>
+                                    <span className="badge bg-primary">
+                                        {cart.length}
+                                    </span>
+                                </Link>
                             </li>
                             <li>
-                                <a href="/login">
+                                <Link to="/login">
                                     <BiUser />
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </div>
@@ -87,8 +96,7 @@ const Header = () => {
                                     className="dropdown-menu"
                                     aria-labelledby="navbarDropdown"
                                     style={{ marginTop: '2px' }}
-                                >
-                                </div>
+                                ></div>
                             </li>
                         </div>
                     </ul>
@@ -107,17 +115,17 @@ const Header = () => {
 
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item ">
-                            <Link to="/" className="nav-link" >
+                            <Link to="/" className="nav-link">
                                 NewsFeed
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/" className="nav-link" >
+                            <Link to="/" className="nav-link">
                                 MerchantZone
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/" className="nav-link" >
+                            <Link to="/" className="nav-link">
                                 Help
                             </Link>
                         </li>

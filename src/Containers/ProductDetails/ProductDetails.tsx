@@ -1,5 +1,8 @@
 import useAsync from 'hooks/useAsync';
-import { useParams } from 'react-router';
+import { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { addToCart } from 'redux/actionCreators/cartAction';
 import ProductService from 'services/ProductService';
 import { IProduct } from 'types';
 import imageUrlParse from 'utils/imageUrlParser';
@@ -10,18 +13,26 @@ interface IParams {
 
 const ProductDetails = () => {
     const { id } = useParams<IParams>();
+    const dispatch = useDispatch();
+
+    const getProduct = useCallback(() => {
+        return ProductService.getProductById(id);
+    }, [id]);
+
     const {
         data: product,
         isLoading,
         isSuccess,
         isError,
         error,
-    } = useAsync<IProduct>(() => ProductService.getProductById(id));
-    const { name, description, image, price } = (product || {}) as IProduct;
+    } = useAsync<IProduct>(getProduct);
 
+    const { name, description, image, price } = (product || {}) as IProduct;
     const addToCartHandler = (product: IProduct) => {
-        console.log(product);
+        dispatch(addToCart(product));
     };
+
+    console.log('product', product);
 
     return (
         <div className="container bg-white rounded mt-2 py-5">
@@ -43,7 +54,7 @@ const ProductDetails = () => {
                                 onClick={() =>
                                     addToCartHandler(product as IProduct)
                                 }
-                                className="btn btn-danger btn-lg"
+                                className="btn btn-danger my-3"
                             >
                                 ADD TO CARD
                             </button>

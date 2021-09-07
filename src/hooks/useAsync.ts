@@ -13,13 +13,13 @@ const useAsync = <T>(asyncFunction: () => Promise<T>) => {
         setError(null);
 
         asyncFunction()
-            .then((res) => {
-                setData(res);
+            .then((data) => {
+                setData(data);
                 setStatus('success');
                 setError(null);
             })
             .catch((err) => {
-                setError(err);
+                setError(err?.response?.data?.message);
                 setStatus('error');
                 setData(null);
             });
