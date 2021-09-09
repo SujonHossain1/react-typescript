@@ -1,0 +1,46 @@
+import CIcon from '@coreui/icons-react'
+import { CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler } from '@coreui/react'
+import { logoNegative } from 'admin/assets/brand/logo-negative'
+import { sygnet } from 'admin/assets/brand/sygnet'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import SimpleBar from 'simplebar-react'
+import 'simplebar/dist/simplebar.min.css'
+// sidebar nav config
+import navigation from '../_nav'
+import { AppSidebarNav } from './AppSidebarNav'
+
+
+const AppSidebar = () => {
+  const dispatch = useDispatch()
+  const unfoldable = useSelector((state) => state.nav.sidebarUnfoldable)
+  const sidebarShow = useSelector((state) => state.nav.sidebarShow)
+
+  return (
+    <CSidebar
+      position="fixed"
+      selfHiding="md"
+      unfoldable={unfoldable}
+      visible={sidebarShow}
+      onHide={() => {
+        dispatch({ type: 'set', sidebarShow: false })
+      }}
+    >
+      <CSidebarBrand className="d-none d-md-flex" to="/">
+        <CIcon className="sidebar-brand-full" icon={logoNegative} height={35} />
+        <CIcon className="sidebar-brand-narrow" icon={sygnet} height={35} />
+      </CSidebarBrand>
+      <CSidebarNav>
+        <SimpleBar>
+          <AppSidebarNav items={navigation} />
+        </SimpleBar>
+      </CSidebarNav>
+      <CSidebarToggler
+        className="d-none d-lg-flex"
+        onClick={() => dispatch({ type: 'set', sidebarUnfoldable: !unfoldable })}
+      />
+    </CSidebar>
+  )
+}
+
+export default React.memo(AppSidebar)

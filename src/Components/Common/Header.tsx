@@ -1,16 +1,28 @@
 import logo from 'assets/images/fvaly.png';
+import { useEffect, useState } from 'react';
 import { Button, Container, FormControl, InputGroup } from 'react-bootstrap';
 import { BiSearch, BiUser } from 'react-icons/bi';
 import { BsPhone } from 'react-icons/bs';
 import { FaBars, FaRegEnvelope } from 'react-icons/fa';
 import { FiPhoneCall, FiShoppingBag } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { AppState } from 'redux/reducers/rootReducer';
 import { IProduct } from 'types';
 
 const Header = () => {
+    const [isDashboard, setIsDashboard] = useState(false);
     const cart: IProduct[] = useSelector((state: AppState) => state.cart);
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        const hasDashboard = pathname.includes('dashboard');
+        setIsDashboard(hasDashboard);
+    }, [pathname]);
+
+    if (isDashboard) {
+        return null;
+    }
 
     return (
         <div className="header__component">

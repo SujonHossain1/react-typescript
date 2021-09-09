@@ -5,19 +5,17 @@ import { Route } from 'react-router';
 
 const Home = React.lazy(() => import('Containers/Home/Home'));
 const ProductDetails = React.lazy(() => import('Containers/ProductDetails/ProductDetails'));
-const Login = React.lazy(() => import('Containers/Login/Login'))
+const Login = React.lazy(() => import('Containers/Login/Login'));
+const Dashboard = React.lazy(() => import('admin/layout/DefaultLayout'));
 
 const Routes = () => {
     return (
         <Switch>
-            <Suspense fallback={'Home Page Loading.........'}>
+            <Suspense fallback={'Page Loading.........'}>
                 <Route path="/" exact component={Home} />
-            </Suspense>
-            <Suspense fallback={'Product Details Page Loading.........'}>
                 <Route path="/products/:id" exact component={ProductDetails} />
-            </Suspense>
-            <Suspense fallback={'Login page Loading.........'}>
                 <Route path="/login" exact component={Login} />
+                <Route path="/dashboard" name="Home" component={Dashboard} />
             </Suspense>
         </Switch>
     );
